@@ -6,6 +6,8 @@ This shader is a standard Unity shader except that it takes the alpha value of a
 
 Apply the magic light material to any object you wish to hide. Shine any light with an alpha colour component to reveal the object. Your magic light material should have a colour with an alpha component of 0 otherwise it will show up even without a light on it. Your light should have maximum alpha otherwise it won't show up hidden objects.
 
+The shader parameter `Amplification` controls how much the surface alpha amplifies the light falling on it. The higher the value, the less light you need to make the object show up.
+
 ## How it works
 
 This shader is a standard Unity surface shader with a custom lighting function. The lighting function is modified from the SimpleLambert shader given in the Unity documentation:

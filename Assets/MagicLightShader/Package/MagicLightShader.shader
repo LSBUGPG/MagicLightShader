@@ -2,6 +2,7 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
+		_Amplification("Amplification", Float) = 1.0
 	}
 	SubShader {
 		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
@@ -15,6 +16,7 @@
 		#pragma target 3.0
 
 		sampler2D _MainTex;
+		float _Amplification;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -26,7 +28,7 @@
 			half NdotL = dot (s.Normal, lightDir);
 			half4 c;
 			c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten);
-			c.a = saturate(s.Alpha + _LightColor0.a * (NdotL * atten));
+			c.a = saturate(s.Alpha + _LightColor0.a * (NdotL * atten) * _Amplification);
 			return c;
 		}
 
